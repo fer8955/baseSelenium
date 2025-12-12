@@ -62,13 +62,6 @@ public class StoreStepsDef {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
 
-        // Obtener HTML
-        String html = driver.getPageSource();
-
-        System.out.println("========== HTML OBTENIDO EN GITHUB ACTIONS ==========");
-        System.out.println(html.substring(0, Math.min(html.length(), 5000)));
-        System.out.println("========== FIN HTML (RECORTADO) ==========");
-
         // Screenshot
         screenShot();
     }
