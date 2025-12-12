@@ -64,3 +64,10 @@ jobs:
 
       - name: Run Selenium Tests
         run: mvn -B test
+
+      # --- Subir reporte como artifact ---
+      - name: Upload Cucumber Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-reports
+          path: target/cucumber/*
