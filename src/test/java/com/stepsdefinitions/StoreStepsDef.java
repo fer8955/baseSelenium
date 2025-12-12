@@ -1,6 +1,6 @@
-package com.nttdata.stepsdefinitions;
+package com.stepsdefinitions;
 
-import com.nttdata.steps.StoreSteps;
+import com.steps.StoreSteps;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;

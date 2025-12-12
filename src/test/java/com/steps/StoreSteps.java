@@ -1,5 +1,5 @@
-package com.nttdata.steps;
-import com.nttdata.page.StorePage;
+package com.steps;
+import com.page.StorePage;
 import org.openqa.selenium.WebDriver;
 
 public class StoreSteps {

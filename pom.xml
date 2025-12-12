@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <selenium.version>4.11.0</selenium.version>
+        <selenium.version>4.25.0</selenium.version>
         <webdrivermanager.version>5.4.1</webdrivermanager.version>
         <cucumber.version>7.3.4</cucumber.version>
     </properties>
