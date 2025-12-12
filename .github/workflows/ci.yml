@@ -1,4 +1,4 @@
-name: CI - Tests + SonarCloud
+name: CI Pipeline
 
 on:
   push:
@@ -7,14 +7,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  # ----------------------------------------------------------
+  # JOB 1 — SONAR ANALYSIS (NO TESTS)
+  # ----------------------------------------------------------
+  sonar:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # requerido por sonarcloud
+          fetch-depth: 0
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -23,13 +26,35 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Run Tests
-        run: mvn -B test
-
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify sonar:sonar \
-          -Dsonar.projectKey=fer8955_baseSelenium \
-          -Dsonar.organization=fer8955 \
-          -Dsonar.host.url=https://sonarcloud.io
+        run: |
+          mvn -B -DskipTests verify sonar:sonar \
+            -Dsonar.projectKey=fer8955_baseSelenium \
+            -Dsonar.organization=fer8955 \
+            -Dsonar.host.url=https://sonarcloud.io
+
+  # ----------------------------------------------------------
+  # JOB 2 — SELENIUM TESTS (UI TESTS)
+  # ----------------------------------------------------------
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      # Instalación de Chrome
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg2
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
