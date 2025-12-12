@@ -56,7 +56,7 @@ public class StoreStepsDef {
         // Aumentar ventana (muy importante en GitHub Actions)
         driver.manage().window().setSize(new Dimension(1920, 1080));
 
-        driver.get("https://qalab.bensg.com/store/");
+        driver.get("https://qalab.bensg.com/store/pe/");
 
         // Esperar carga mínima del DOM
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
